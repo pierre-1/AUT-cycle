@@ -4,6 +4,9 @@ require "rails_helper"
 feature 'List articles on index page' do
   context 'with articles in db' do #db = database
     before do
+      create(:article, title: 'A breaking news item')
+      create(:article, title: 'Learn Rails 5')
+      
       visit root_path
     end
 
