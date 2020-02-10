@@ -1,4 +1,4 @@
-# spec/features/user_can_see_list_of_articles_spec.rb
+# spec/features/user_can_see_list_of_articles_spec.rb hello hello
 require "rails_helper"
 
 feature 'List articles on index page' do
