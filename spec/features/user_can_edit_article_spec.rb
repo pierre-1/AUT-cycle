@@ -1,34 +1,23 @@
+require 'rails_helper'
+require 'factory_bot'
+
 feature 'User can edit specific article' do
     before do
-      create(:article, title: 'How to develop good coding habits', content: 'Edited content of article')
       create(:article, title: 'How to not die coding', content: 'Edited content of article')
-      create(:article, title: 'How to code in your dreams', content: 'Edited content of article')
-
       visit root_path
-      click_on 'Edit content'
+      click_on 'How to not die coding'
+      click_on 'Edit'
     end
 
-    context 'Article displays' do
-      it 'title' do
-        expect(page).to have_content 'Edit content'
+    describe 'Article displays' do
+      it 'can update title' do
+        fill_in 'Title', with: 'test'
+        expect(page).to have_content 'test'
       end
 
-      it 'content' do
-        expect(page).to have_content 'Edited content of article'
+      it 'can update content' do
+        fill_in 'Content', with: 'test2'
+        expect(page).to have_content 'test2'
       end
-    end
-
-    context 'content can be edited' do
-        it 'user can click edit button' do
-            click_on 'Edit article'
-            expect(page).to have_content 'Save and publish'
-        end
-
-        it 'user can change content' do
-            click_on 'Edit article'
-            fill_in 'Article', with: 'whatever'
-            click_on 'Save and publish'
-            expect(page).to have_content 'whatever'
-        end
     end
   end 
